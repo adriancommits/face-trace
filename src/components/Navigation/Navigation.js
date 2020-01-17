@@ -1,11 +1,14 @@
 import React from 'react';
+import './Navigation.css';
 
 // a component with no state. a pure function. Thus no class..
 
 const Navigation = () => {
 	return (
 		<nav>
-			<p>Sign Out</p>
+			<ul>
+				<li><button>Sign Out</button></li>
+			</ul>
 		</nav>
 	);
 }
