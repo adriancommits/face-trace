@@ -54,6 +54,7 @@ class App extends Component {
             console.log("this gets called. but the next line doesn't");
             this.calculateFaceLocation(); // @Alex: PROBLEM: THIS FUNCTION IS NOT EXECUTED OR SOMETHINGS WRONG WITH IT.
             // probably some scope issue with "this" or something i dont know
+            // @Alex: input appreciated :) Thanks!
           }, 
         function(err) {
           console.log("there was an error", err);
