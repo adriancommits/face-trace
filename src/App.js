@@ -25,9 +25,8 @@ class App extends Component {
   }
 
   calculateFaceLocation = (data) => {
-    console.log("calculateFaceLocation", "doesnt get called right now.");
     const clarifaiFaceOutput = data.outputs[0].data.regions[0].region_info.bounding_box;
-    console.log(clarifaiFaceOutput);
+    console.log("Position of the detected face(s):", clarifaiFaceOutput);
   }
 
   onInputChange = (event) => {
@@ -36,31 +35,27 @@ class App extends Component {
     this.setState( {input: event.target.value} );
   }
 
-  onDetectClicked = (event) => {
+  setUrl = (event) => {
     // will be called by the ImageInputForm Component when the button is clicked
     this.setState(
       { imageUrl: this.state.input }, 
-      () => { console.log("executed callback function of setState..", this.state.imageUrl ) }
-      );
-  
-    // detect face with api
-    app.models
-    .predict(
-      Clarifai.FACE_DETECT_MODEL, 
-        this.state.input)
-        .then(
-          function(response) {
-            console.log(response);
-            console.log("this gets called. but the next line doesn't");
-            this.calculateFaceLocation(); // @Alex: PROBLEM: THIS FUNCTION IS NOT EXECUTED OR SOMETHINGS WRONG WITH IT.
-            // probably some scope issue with "this" or something i dont know
-            // @Alex: input appreciated :) Thanks!
-          }, 
-        function(err) {
-          console.log("there was an error", err);
-          // there was an error
-        }
-      );  
+      () => { this.detectFaces() }
+    )
+  }
+
+  detectFaces = () => {
+     // detect face with api
+     app.models
+     .predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
+         .then( 
+           (response) => {
+             this.calculateFaceLocation(response); 
+           }, 
+         function(err) {
+           console.log("there was an error", err);
+           // there was an error
+         }
+       );  
   }
 
   render() {
@@ -70,7 +65,7 @@ class App extends Component {
         <Navigation />
         <h1>Welcome To Facetrace</h1>
         <Rank />
-        <ImageInputForm onInputChange={this.onInputChange} onDetectClicked={this.onDetectClicked}/>
+        <ImageInputForm onInputChange={this.onInputChange} onDetectClicked={this.setUrl}/>
         <FaceRecognition imageUrl={this.state.imageUrl}/>
       </div>
     );
