@@ -5,7 +5,7 @@ const Rank = () => {
 
   return (
     <p>
-      You are currently ranked ${currentRank} worldwide. Detect more faces to
+      You are currently ranked {currentRank} worldwide. Detect more faces to
       rank up!
     </p>
   );
