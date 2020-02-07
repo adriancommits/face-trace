@@ -10,12 +10,9 @@ import './App.css';
 
 const app = new Clarifai.App({ apiKey: '7008eee28f0040098f61cf606569b149' });
 
-// console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
-
 class App extends Component {
   state = {
     input: '',
-    imageUrl: '',
     box: {},
   };
 
@@ -30,15 +27,7 @@ class App extends Component {
     this.setState({ input });
   };
 
-  setUrl = (event) => {
-    // will be called by the ImageInputForm Component when the button is clicked
-    this.setState({ imageUrl: this.state.input }, () => {
-      this.detectFaces();
-    });
-  };
-
   detectFaces = async () => {
-    // detect face with api
     try {
       const response = await app.models.predict(
         Clarifai.FACE_DETECT_MODEL,
@@ -59,9 +48,9 @@ class App extends Component {
         <Rank />
         <ImageInputForm
           onInputChange={this.onInputChange}
-          onDetectClicked={this.setUrl}
+          onDetectClicked={this.detectFaces}
         />
-        <FaceRecognition imageUrl={this.state.imageUrl} />
+        <FaceRecognition imageUrl={this.state.input} />
       </div>
     );
   }
