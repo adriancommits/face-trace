@@ -17,7 +17,7 @@ const Card = styled.div`
   min-width: 250px;
   max-width: 350px;
   width: 30%;
-  height: 220px;
+  height: 250px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 8px;
@@ -68,7 +68,7 @@ const SignInForm = ({ onRouteChange }) => {
       <Card>
         <h3>New around here?</h3>
         <P>
-          No problem. <br />
+          Good to see you. <br />
           Create your account within a minute.
         </P>
         <Button

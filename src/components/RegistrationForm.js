@@ -17,7 +17,7 @@ const Card = styled.div`
   min-width: 250px;
   max-width: 350px;
   width: 30%;
-  height: 300px;
+  height: 350px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 8px;

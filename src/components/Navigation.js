@@ -18,7 +18,7 @@ const UnorderedList = styled.ul`
 const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
-  border: 1px solid;
+  border: ${(props) => (props.primary ? '1px solid' : 'none')};
   border-radius: 24px;
   padding: 10px 24px;
 
@@ -49,7 +49,7 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
             <img src={logo} alt="logo" width="40px"></img>
           </li>
           <li style={{ cssFloat: 'right' }}>
-            <Button onClick={() => onRouteChange('registration')}>
+            <Button primary onClick={() => onRouteChange('registration')}>
               Register
             </Button>
           </li>

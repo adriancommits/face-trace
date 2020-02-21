@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation.js';
-import Rank from './components/Rank.js';
-import ImageInputForm from './components/ImageInputForm.js';
-import FaceRecognition from './components/FaceRecognition.js';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import styled from 'styled-components';
 import SignInForm from './components/SignInForm.js';
 import RegistrationForm from './components/RegistrationForm.js';
+import DetectForm from './DetectForm.js';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -103,14 +101,12 @@ class App extends Component {
         ) : this.state.route === 'registration' ? (
           <RegistrationForm onRouteChange={this.onRouteChange} />
         ) : (
-          <>
-            <Rank />
-            <ImageInputForm
-              onInputChange={this.onInputChange}
-              onDetectClicked={this.detectFaces}
-            />
-            <FaceRecognition box={this.state.box} imageUrl={this.state.input} />
-          </>
+          <DetectForm
+            onInputChange={this.onInputChange}
+            detectFaces={this.detectFaces}
+            box={this.state.box}
+            imageUrl={this.state.input}
+          />
         )}
       </AppWrapper>
     );
