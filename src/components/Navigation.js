@@ -27,7 +27,7 @@ const Button = styled.button`
   }
 `;
 
-const Navigation = () => {
+const Navigation = ({ onRouteChange }) => {
   return (
     <Nav>
       <UnorderedList>
@@ -35,7 +35,7 @@ const Navigation = () => {
           <img src={logo} alt="logo" width="40px"></img>
         </li>
         <li style={{ cssFloat: 'right' }}>
-          <Button>Sign Out</Button>
+          <Button onClick={() => onRouteChange('signIn')}>Sign Out</Button>
         </li>
       </UnorderedList>
     </Nav>
