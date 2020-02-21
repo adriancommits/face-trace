@@ -6,6 +6,7 @@ import FaceRecognition from './components/FaceRecognition.js';
 import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import styled from 'styled-components';
+import SignInForm from './components/SignInForm.js';
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -26,6 +27,7 @@ class App extends Component {
   state = {
     input: '',
     box: {},
+    route: 'signIn',
   };
 
   calculateFaceLocation = (data) => {
@@ -75,18 +77,29 @@ class App extends Component {
     }
   };
 
+  onRouteChange = (route) => {
+    this.setState({ route: route });
+  };
+
   render() {
     return (
       <AppWrapper>
         <ParticlesWrapper />
-        <Navigation />
+        <Navigation onRouteChange={this.onRouteChange} />
         <h1>Welcome To Facetrace</h1>
-        <Rank />
-        <ImageInputForm
-          onInputChange={this.onInputChange}
-          onDetectClicked={this.detectFaces}
-        />
-        <FaceRecognition box={this.state.box} imageUrl={this.state.input} />
+
+        {this.state.route === 'signIn' ? (
+          <SignInForm onRouteChange={this.onRouteChange} />
+        ) : (
+          <>
+            <Rank />
+            <ImageInputForm
+              onInputChange={this.onInputChange}
+              onDetectClicked={this.detectFaces}
+            />
+            <FaceRecognition box={this.state.box} imageUrl={this.state.input} />
+          </>
+        )}
       </AppWrapper>
     );
   }
