@@ -29,6 +29,7 @@ class App extends Component {
     input: '',
     box: {},
     route: 'signIn',
+    isSignedIn: 'false',
   };
 
   calculateFaceLocation = (data) => {
@@ -80,17 +81,27 @@ class App extends Component {
 
   onRouteChange = (route) => {
     this.setState({ route: route });
+    if (route !== 'signIn' && route !== 'registration') {
+      this.setState({ isSignedIn: false });
+    } else {
+      this.setState({ isSignedIn: true });
+    }
   };
 
   render() {
     return (
       <AppWrapper>
         <ParticlesWrapper />
-        <Navigation onRouteChange={this.onRouteChange} />
+        <Navigation
+          onRouteChange={this.onRouteChange}
+          isSignedIn={this.state.isSignedIn}
+        />
         <h1>Welcome To Facetrace</h1>
 
         {this.state.route === 'signIn' ? (
           <SignInForm onRouteChange={this.onRouteChange} />
+        ) : this.state.route === 'registration' ? (
+          <RegistrationForm onRouteChange={this.onRouteChange} />
         ) : (
           <>
             <Rank />

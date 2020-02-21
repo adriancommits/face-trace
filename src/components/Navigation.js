@@ -27,19 +27,39 @@ const Button = styled.button`
   }
 `;
 
-const Navigation = ({ onRouteChange }) => {
-  return (
-    <Nav>
-      <UnorderedList>
-        <li style={{ cssFloat: 'left' }}>
-          <img src={logo} alt="logo" width="40px"></img>
-        </li>
-        <li style={{ cssFloat: 'right' }}>
-          <Button onClick={() => onRouteChange('signIn')}>Sign Out</Button>
-        </li>
-      </UnorderedList>
-    </Nav>
-  );
+const Navigation = ({ onRouteChange, isSignedIn }) => {
+  if (!isSignedIn) {
+    return (
+      <Nav>
+        <UnorderedList>
+          <li style={{ cssFloat: 'left' }}>
+            <img src={logo} alt="logo" width="40px"></img>
+          </li>
+          <li style={{ cssFloat: 'right' }}>
+            <Button onClick={() => onRouteChange('signIn')}>Sign Out</Button>
+          </li>
+        </UnorderedList>
+      </Nav>
+    );
+  } else {
+    return (
+      <Nav>
+        <UnorderedList>
+          <li style={{ cssFloat: 'left' }}>
+            <img src={logo} alt="logo" width="40px"></img>
+          </li>
+          <li style={{ cssFloat: 'right' }}>
+            <Button onClick={() => onRouteChange('registration')}>
+              Register
+            </Button>
+          </li>
+          <li style={{ cssFloat: 'right' }}>
+            <Button onClick={() => onRouteChange('signIn')}>Sign In</Button>
+          </li>
+        </UnorderedList>
+      </Nav>
+    );
+  }
 };
 
 export default Navigation;

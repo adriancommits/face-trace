@@ -51,6 +51,10 @@ const Button = styled.button`
   }
 `;
 
+const P = styled.p`
+  font-size: 13px;
+`;
+
 const SignInForm = ({ onRouteChange }) => {
   return (
     <Container>
@@ -63,7 +67,10 @@ const SignInForm = ({ onRouteChange }) => {
 
       <Card>
         <h3>New around here?</h3>
-        <p>No problem. It takes only a minute to create a free account.</p>
+        <P>
+          No problem. <br />
+          Create your account within a minute.
+        </P>
         <Button
           onClick={() => {
             onRouteChange('registration');
