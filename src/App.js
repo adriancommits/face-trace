@@ -7,6 +7,7 @@ import Particles from 'react-particles-js';
 import Clarifai from 'clarifai';
 import styled from 'styled-components';
 import SignInForm from './components/SignInForm.js';
+import RegistrationForm from './components/RegistrationForm.js';
 
 const AppWrapper = styled.div`
   text-align: center;

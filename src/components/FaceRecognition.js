@@ -13,7 +13,12 @@ const BoundingBox = styled.div`
 const FaceRecognition = ({ imageUrl, box }) => {
   return (
     <div width="100%" style={{ position: 'absolute' }}>
-      <img id="inputimage" height="auto" src={imageUrl} />
+      <img
+        id="inputimage"
+        height="auto"
+        src={imageUrl}
+        alt="face to be detected"
+      />
       <BoundingBox
         style={{
           top: box.topRow,
