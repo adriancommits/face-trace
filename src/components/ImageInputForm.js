@@ -1,6 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+`;
+
 const SearchField = styled.input`
   width: 40%;
   min-width: 200px;
@@ -30,14 +38,14 @@ const DetectButton = styled.button`
 
 const ImageInputForm = (props) => {
   return (
-    <>
+    <Container>
       <SearchField
         type="text"
         onChange={props.onInputChange}
         placeholder="Paste an image link to detect a face in the image"
       />
       <DetectButton onClick={props.onDetectClicked}>Detect</DetectButton>
-    </>
+    </Container>
   );
 };
 

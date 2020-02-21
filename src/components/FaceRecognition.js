@@ -1,16 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Card = styled.div`
-  min-width: 250px;
-  max-width: 350px;
-  width: 30%;
-  height: 250px;
-  padding: 16px;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-  margin: 16px;
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const BoundingBox = styled.div`
@@ -23,14 +16,9 @@ const BoundingBox = styled.div`
 
 const FaceRecognition = ({ imageUrl, box }) => {
   return (
-    <Card>
-      <div width="100%" style={{ position: 'absolute' }}>
-        <img
-          id="inputimage"
-          height="auto"
-          src={imageUrl}
-          alt="face to be detected"
-        />
+    <Container>
+      <div width="50%" style={{ position: 'absolute' }}>
+        <img id="inputimage" height="auto" width="70%" src={imageUrl} />
         <BoundingBox
           style={{
             top: box.topRow,
@@ -40,7 +28,7 @@ const FaceRecognition = ({ imageUrl, box }) => {
           }}
         ></BoundingBox>
       </div>
-    </Card>
+    </Container>
   );
 };
 
