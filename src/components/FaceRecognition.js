@@ -9,16 +9,19 @@ const Container = styled.div`
 const BoundingBox = styled.div`
   position: absolute;
   box-shadow: 0 0 0 3px #149df2 inset;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+`;
+
+const Image = styled.img`
+  height: auto;
+  max-height: 60vh;
+  max-width: 60hh;
 `;
 
 const FaceRecognition = ({ imageUrl, box }) => {
   return (
     <Container>
       <div width="50%" style={{ position: 'absolute' }}>
-        <img id="inputimage" height="auto" width="70%" src={imageUrl} />
+        <Image id="inputimage" src={imageUrl} />
         <BoundingBox
           style={{
             top: box.topRow,
