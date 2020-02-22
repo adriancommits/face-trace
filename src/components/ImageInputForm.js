@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SearchField = styled.input`
   width: 40%;
   min-width: 200px;
-  max-width: 600px;
+  max-width: 400px;
   height: 30px;
   margin: 16px 0px;
   border: none;
@@ -14,6 +14,7 @@ const SearchField = styled.input`
 
 const DetectButton = styled.button`
   width: 20%;
+  max-width: 100px;
   background-color: rgba(0, 0, 0, 0.8);
   cursor: pointer;
   border-top-right-radius: 16px;
