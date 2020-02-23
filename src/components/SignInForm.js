@@ -55,32 +55,78 @@ const P = styled.p`
   font-size: 13px;
 `;
 
-const SignInForm = ({ onRouteChange }) => {
-  return (
-    <Container>
-      <Card>
-        <h3>Hey, it's you again. Isn't it?</h3>
-        <InputField type="text" placeholder="Your emailadress"></InputField>
-        <InputField type="password" placeholder="Your password"></InputField>
-        <Button onClick={() => onRouteChange('home')}>Sign in</Button>
-      </Card>
+class SignInForm extends React.Component {
+  state = {
+    signInEmail: '',
+    signInPassword: '',
+  };
 
-      <Card>
-        <h3>New around here?</h3>
-        <P>
-          Good to see you. <br />
-          Create your account within a minute.
-        </P>
-        <Button
-          onClick={() => {
-            onRouteChange('registration');
-          }}
-        >
-          Create an account now
-        </Button>
-      </Card>
-    </Container>
-  );
-};
+  onEmailChange = (event) => {
+    this.setState({ signInEmail: event.target.value });
+  };
+
+  onPasswordChange = (event) => {
+    this.setState({ signInPassword: event.target.value });
+  };
+
+  onSubmitSignIn = () => {
+    console.log(this.state);
+    // send the information that the user inputted to our server
+    fetch('http://localhost:9000/signin', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: this.state.signInEmail,
+        password: this.state.signInPassword,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data === 'success') {
+          this.props.onRouteChange('home');
+        } else {
+          // if fail dont change route and show error
+          console.log('frontend error: couldnt login, wrong data');
+        }
+      });
+  };
+
+  render() {
+    const { onRouteChange } = this.props;
+    return (
+      <Container>
+        <Card>
+          <h3>Hey, it's you again. Isn't it?</h3>
+          <InputField
+            type="text"
+            placeholder="Your emailadress"
+            onChange={this.onEmailChange}
+          ></InputField>
+          <InputField
+            type="password"
+            placeholder="Your password"
+            onChange={this.onPasswordChange}
+          ></InputField>
+          <Button onClick={this.onSubmitSignIn}>Sign in</Button>
+        </Card>
+
+        <Card>
+          <h3>New around here?</h3>
+          <P>
+            Good to see you. <br />
+            Create your account within a minute.
+          </P>
+          <Button
+            onClick={() => {
+              onRouteChange('registration');
+            }}
+          >
+            Create an account now
+          </Button>
+        </Card>
+      </Container>
+    );
+  }
+}
 
 export default SignInForm;
